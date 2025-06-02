@@ -2,6 +2,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 
 export interface Master {
   id: number;
@@ -22,6 +23,8 @@ interface MasterCardProps {
 }
 
 const MasterCard = ({ master, onSelect }: MasterCardProps) => {
+  const navigate = useNavigate();
+
   const renderStars = (rating: number) => {
     return Array.from({ length: 5 }, (_, i) => (
       <span
@@ -88,7 +91,7 @@ const MasterCard = ({ master, onSelect }: MasterCardProps) => {
             <p className="text-sm text-gray-500">за час</p>
           </div>
           <Button
-            onClick={() => onSelect(master)}
+            onClick={() => navigate(`/master/${master.id}`)}
             className="bg-blue-600 hover:bg-blue-700 px-6"
           >
             Выбрать
